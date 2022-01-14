@@ -1,16 +1,15 @@
 class people:
+    @staticmethod
+    def m1():
+        print("父类静态方法")
 
-    def __init__(self, age):
-        self.__age = age
-    def get_age (self):
-        return self.__age
+    @classmethod
+    def m2(cls):
+        print("父类类方法")
 
-p = people(18)
-p.__age=10
-p.__people__age=20
-print(p.get_age())
-print(p.__age)
-print(p.__people__age)
-f=people.get_age
-print(people.get_age)
-print(p.get_age)
+class p1(people):
+    pass
+
+p1.m2()
+p1.m1()
+
