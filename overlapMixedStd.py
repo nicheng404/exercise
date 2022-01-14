@@ -1,3 +1,5 @@
+from time import time
+
 import numpy as np
 
 '''
@@ -41,23 +43,29 @@ def overlapMixedStd(muAB, stdAB, aPlusb, muB, stdB, b, muBC, stdBC, bPlusc):
 
     return muABC, stdABC
 
+print(time())
+ABC  = (4*np.random.rand(20000000)).tolist()
+muABC = np.mean(ABC)
+stdABC1 = np.std(ABC)
 
-ABC  = np.random.rand(10000000)
-muAB = np.mean(ABC)
-stdAB = np.std(ABC)
-
-AB = ABC[1:4000000]
+AB = ABC[0:12000000]
 muAB = np.mean(AB)
-stdBC = np.std(BC)
+stdAB = np.std(AB)
+lenAB=len(AB)
 
-B = [3, 4]
+BC = ABC[8000000:]
+muBC = np.mean(BC)
+stdBC = np.std(BC)
+lenBC=len(BC)
+
+B=ABC[800000:1200000]
 muB = np.mean(B)
 stdB = np.std(B)
+lenB=len(B)
 
-ABC = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-stdABC1 = np.std(ABC)
-stdABC2 = overlapMixedStd(muAB, stdAB, 4, muB, stdB, 2, muBC, stdBC, 7)
+print(time())
+stdABC2 = overlapMixedStd(muAB, stdAB, lenAB, muB, stdB, lenB, muBC, stdBC, lenBC)
+print(time())
 
 print(stdABC1)
 print(stdABC2[1])
